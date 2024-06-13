@@ -10,7 +10,7 @@ Space Complexity : O(N)*/
 
 import java.util.*;
 
-public class Day_02_Smalllest_Multiple {
+public class Day_17_Smalllest_Multiple {
     static int smallest(ArrayList<Integer> arr , int n) {
         ArrayList<Integer> dp = new ArrayList<Integer>();
         for(int i =0;i<n;i++)
@@ -67,5 +67,6 @@ public class Day_02_Smalllest_Multiple {
       System.out.print("Enter the number: ");
       int n = in.nextInt();
       System.out.print(smallest(arr, n));
+      in.close();
     }
 }

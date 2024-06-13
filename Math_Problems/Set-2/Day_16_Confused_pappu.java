@@ -16,7 +16,7 @@ Space Complexity : O(log10amount)
 
 import java.util.*;
 
-public class Day_01_Confused_pappu {
+public class Day_16_Confused_pappu {
     static long findDiff(long amount) {
         long result =0;
         long multiplier =1;
@@ -36,5 +36,6 @@ public class Day_01_Confused_pappu {
         System.out.println("Enter amount: ");
         int amount = in.nextInt();
         System.out.print(findDiff(amount));
+        in.close();
     }
 }
