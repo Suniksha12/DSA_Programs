@@ -13,7 +13,7 @@ Time Complexity : O(n)
 Space Complexity : O(1)*/
 
 import java.util.*;
-public class Moores_Voting_algo {
+public class P02_Moores_Voting_algo {
     static int findCandidate(int a[], int size) {
         int maj_index = 0, count = 1;
         int i;
