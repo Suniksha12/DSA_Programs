@@ -45,8 +45,7 @@ public class P03_BestTime_Buysell_stock {
  * Space Complexity : O(1)
 */
 
-import java.util.*;
-import java.util.ArrayList;
+/* import java.util.*;
 class Interval {
     int buy, sell;
 }
@@ -59,8 +58,9 @@ public class P03_BestTime_Buysell_stock {
 
         int i =0;
         while(i < n-1) {
-            while((i < n-1) && (price[i+1] <= price[i])) 
-                  i++;
+            while ((i < n - 1)
+                   && (price[i + 1] <= price[i]))
+                i++;
             
             if(i == n-1) 
                break;
@@ -68,21 +68,25 @@ public class P03_BestTime_Buysell_stock {
             Interval e = new Interval();
             e.buy = i++;
 
-            while((i<n) && (price[i] >= price[i-1]))
-                  i++;
+            while ((i < n) && (price[i] >= price[i - 1]))
+                i++;
 
             e.sell = i-1;
             sol.add(e);
 
             count++;
         }
-        if(count ==0) 
-           System.out.print("There is no day when buying the stock "
+        if (count == 0)
+            System.out.println(
+                "There is no day when buying the stock "
                 + "will make profit");
-        else 
-           for(int j =0;i<count;j++)
-               System.out.println("Buy on day: " + sol.get(j).buy + "   " +
-                                   "Sell on day : " + sol.get(j).sell);
+        else
+            for (int j = 0; j < count; j++)
+                System.out.println(
+                    "Buy on day: " + sol.get(j).buy
+                    + "        "
+                    + "Sell on day : " + sol.get(j).sell);
+
         return;
     }
     public static void main(String[] args) {
@@ -94,6 +98,34 @@ public class P03_BestTime_Buysell_stock {
             price[i] = in.nextInt();
         }
         stockBuySell(price,n);
+        in.close();
+    }
+}
+*/
+
+/* Approach - 3 using Valley Peak Approach 
+ * Time Complexity : O(n)
+ * Space Complexity : O(1)
+*/
+
+import java.util.*;
+public class P03_BestTime_Buysell_stock {
+    static int maxprofit(int prices[], int size) {
+        int maxProfit =0;
+        for(int i =1;i<size;i++) 
+            if(prices[i] > prices[i-1])
+               maxProfit += prices[i] - prices[i-1];
+        return maxProfit;
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the price:");
+        int price[] = new int[6];
+        int n = price.length;
+        for(int i =0;i<n;i++) {
+            price[i] = in.nextInt();
+        }
+        System.out.print(maxprofit(price, n));
         in.close();
     }
 }
