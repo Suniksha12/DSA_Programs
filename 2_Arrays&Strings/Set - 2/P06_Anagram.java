@@ -49,7 +49,11 @@ public class P06_Anagram {
 }
 */
 
-/* Approach 2 - Frequency Count */
+/* Approach 2 - Frequency Count 
+ * 
+ * Time Complexity : O(n)
+ * Space Complexity : O(1)
+*/
 
 import java.util.Arrays;
 
