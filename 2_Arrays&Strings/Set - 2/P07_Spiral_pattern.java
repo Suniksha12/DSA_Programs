@@ -12,6 +12,7 @@ Time Complexity : O(m*n)
 Space Complexity : O(m*n)
  */
 
+/* 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,12 +56,53 @@ public class P07_Spiral_pattern {
             { 13, 14, 15, 16 }
     };
 
-    // Function call to get the spiral order traversal
     List<Integer> result = spiral(matrix);
 
-    // Print the result elements
     for (int num : result) {
         System.out.print(num + " ");
     }
+    }
+} */
+
+/* Approach - 2 Boundary Traversal
+ * 
+ * Time Complexity : O(m*n)
+ * Space Complexity : O(1)
+ */
+
+ public class P07_Spiral_pattern {
+    public static void spiralPrint(int m, int n, int[][] a) {
+        int top =0, bottom = m-1, left =0, right = n-1;
+        while(top <= bottom && left <= right) {
+            for(int i = left;i<=right;++i) {
+                System.out.print(a[top][i] + " ");
+            }
+            top++;
+            for(int i = top ; i<=bottom;++i) {
+                System.out.print(a[i][right] + " ");
+            }
+            right--;
+            if(top <= bottom) {
+                for(int i = right;i>=left;--i) {
+                    System.out.print(a[bottom][i] + " ");
+                }
+                bottom--;
+            }
+            if(left <= right) {
+                for(int i =bottom;i>=top;--i) {
+                    System.out.print(a[i][left] + " ");
+                }
+                left++;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int[][] matrix = { { 1, 2, 3, 4 },
+                           { 5, 6, 7, 8 },
+                           { 9, 10, 11, 12 },
+                           { 13, 14, 15, 16 } };
+
+        spiralPrint(matrix.length, matrix[0].length,
+                    matrix);
     }
 }
