@@ -46,4 +46,35 @@ public class Longest_sequenceof1s {
 }
 */
 
-/* Approach - 2 Sliding Window */
+/* Approach - 2 Sliding Window 
+ * Time Complexity : O(n)
+ * Space Complexity : O(1)
+*/
+
+public class Longest_sequenceof1s {
+    public static int findMaxConsecutiveOnes(int num) {
+         int left =0, right =0, flips =0, max_len =0;
+         String binary = String.format("%32s",Integer.toBinaryString(num)).replace(' ', '0');
+         while(right < binary.length()) {
+            if(binary.charAt(right) == '0') {
+                flips++;
+            }
+            while(flips > 1) {
+                if(binary.charAt(left) == '0') {
+                    flips--;
+                }
+                left++;
+            }
+            max_len = Math.max(max_len , right - left + 1);
+            right++;
+         }
+         return max_len;
+    }
+    public static void main(String[] args) {
+        System.out.println(findMaxConsecutiveOnes(13));
+
+        System.out.println(findMaxConsecutiveOnes(1775));
+
+        System.out.println(findMaxConsecutiveOnes(15));
+    }
+}
