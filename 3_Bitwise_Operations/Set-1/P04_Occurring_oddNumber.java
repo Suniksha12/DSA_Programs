@@ -14,7 +14,7 @@ Time Complexity : O(n^2)
 
 Space Complexity : O(1) */
 
-public class P04_Occurring_oddNumber {
+/*public class P04_Occurring_oddNumber {
     static int getOddOccurences(int arr[] , int arr_size) {
         int i;
         for(i =0;i<arr_size;i++) {
@@ -34,4 +34,38 @@ public class P04_Occurring_oddNumber {
         int n = arr.length;
         System.out.println(getOddOccurences(arr, n));
 }
+} */
+
+/* Approach - 2  Hashing
+ * 
+ * Time Complexity : O(n)
+ * 
+ * Space Complexity : O(n)
+*/
+
+import java.util.HashMap;
+
+public class P04_Occurring_oddNumber { 
+    static int getOddOccurences(int arr[] , int n) {
+         HashMap<Integer, Integer> hamp = new HashMap<>();
+         for(int i =0;i<n;i++) {
+            if(hamp.containsKey(arr[i])) {
+                int val = hamp.get(arr[i]);
+                hamp.put(arr[i],val + 1);
+            }
+            else {
+                hamp.put(arr[i],1);
+            }
+         }
+         for(Integer a:hamp.keySet()) {
+            if(hamp.get(a) % 2 != 0) return a;
+         }
+         return -1;
+    }
+    public static void main(String[] args) 
+    {
+        int arr[] = new int[]{2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2};
+        int n = arr.length;
+        System.out.println(getOddOccurences(arr, n));
+    } 
 }
