@@ -13,7 +13,7 @@ Time Complexity : O(2^N)
 
 Space Complexity : O(1)*/
 
-
+/* 
 public class P06_Divide_the_array {
     static int maxXor(int arr[] , int n , int xrr , int orr) {
         if(n==0) return xrr^orr;
@@ -32,5 +32,30 @@ public class P06_Divide_the_array {
         int arr[] = { 1, 5, 7 };
         int N = arr.length;
         System.out.println(maximumXOR(arr, N));
+    } 
+} */
+
+/* Approach - 2 Efficient Approach
+ * 
+ * Time Complexity : O(N)
+ * 
+ * Space Complexity : O(1)
+ * 
+ * 
+ */
+
+ public class P06_Divide_the_array {
+   static int MaxXOR(int arr[] , int n) {
+    int res =0;
+    for(int i =0;i<n;i++) {
+        res |= arr[i];
     }
-}
+    return res;
+   }
+   public static void main(String[] args) {
+    int arr[] = {1,5,7};
+    int n = arr.length;
+    System.out.println(MaxXOR(arr,n));
+   }
+ }
+
