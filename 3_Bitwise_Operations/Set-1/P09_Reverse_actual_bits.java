@@ -7,7 +7,10 @@ Input : 11
 Output : 13
 Explanation: (11)10 = (1011)2.
 After reversing the bits we get:
-(1101)2 = (13)10. */
+(1101)2 = (13)10. 
+
+Time Complexity : O(num)
+Space Complexity : O(1)*/
 
 
 public class P09_Reverse_actual_bits {
