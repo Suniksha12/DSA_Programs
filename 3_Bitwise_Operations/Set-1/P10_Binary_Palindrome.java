@@ -79,6 +79,7 @@ public static void main(String[] args) {
  * Space Complexity : O(k)
  */
 
+/* 
 public class P10_Binary_Palindrome {
     public static boolean isPalindrome(int N) {
         String s = Integer.toBinaryString(N);
@@ -99,4 +100,29 @@ public class P10_Binary_Palindrome {
         x = 17;
         System.out.println(isPalindrome(x));
       }  
+} */
+
+/*Approach - 3 using | operator
+ *
+ * Time Complexity : O(log n)
+ * 
+ * Space Complexity : O(1)
+ */
+
+ public class P10_Binary_Palindrome {
+   public static boolean isBinaryPalindrome(int num) {
+    int revBinary = 0;
+    int copyNum = num;
+    while(copyNum != 0) {
+        revBinary = (revBinary << 1 ) | (copyNum & 1);
+        copyNum >>= 1;
+    }
+    return revBinary == num;
+   }
+   public static void main(String[] args) {
+    int num = 9;
+    System.out.println(isBinaryPalindrome(num));
+    num = 10;
+    System.out.println(isBinaryPalindrome(num));
 }
+ }
