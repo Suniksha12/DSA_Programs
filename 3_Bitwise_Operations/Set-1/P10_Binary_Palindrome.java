@@ -44,6 +44,7 @@ public class P10_Binary_Palindrome {
  * Space Complexity : O(1)
  */
 
+/*
  public class P10_Binary_Palindrome {
 static String bin(int n)
 { 
@@ -69,5 +70,33 @@ public static void main(String[] args) {
 	x = 10; 
 	System.out.println(checkPalindrome(x)); 
 }
-}
+} */
 
+/* Approach - 3 Using builtin method bitset<>
+ * 
+ * Time Complexity : O(k)
+ * 
+ * Space Complexity : O(k)
+ */
+
+public class P10_Binary_Palindrome {
+    public static boolean isPalindrome(int N) {
+        String s = Integer.toBinaryString(N);
+
+        int i =0,j = s.length()-1;
+        while(i <j) {
+            if(s.charAt(i) != s.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        int x = 16;
+        System.out.println(isPalindrome(x));
+        x = 17;
+        System.out.println(isPalindrome(x));
+      }  
+}
