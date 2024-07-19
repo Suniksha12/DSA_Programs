@@ -29,3 +29,11 @@ public class Max_value {
                            + maxAND(arr, n));
     }  
 } */
+
+/* Approach 2 : Bit Manipulation */
+
+public class Max_value {
+    static int checkBit(int pattern, int arr[] , int n) {
+        int count =0;
+        
+    }
