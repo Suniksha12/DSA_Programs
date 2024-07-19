@@ -30,10 +30,34 @@ public class Max_value {
     }  
 } */
 
-/* Approach 2 : Bit Manipulation */
+/* Approach 2 : Bit Manipulation 
+ * 
+ * Time Complexity : O(N*log(M))
+ * Space Complexity : O(1)
+*/
 
 public class Max_value {
     static int checkBit(int pattern, int arr[] , int n) {
         int count =0;
-        
+        for(int i =0;i<n;i++)
+           if((pattern & arr[i]) == pattern)
+              count++;
+        return count;
     }
+    static int maxAnd(int arr[], int n) {
+        int res =0, count;
+        for(int bit = 31;bit >= 0;bit--) {
+            count = checkBit(res | (1 << bit), arr, n);
+            if(count >= 2)
+              res = res | (1 << bit);
+        }
+        return res;
+    }
+    public static void main(String argc[])
+    {
+        int arr[] = { 4, 8, 6, 2 };
+        int n = arr.length;
+        System.out.println("Maximum AND Value = "
+                           + maxAnd(arr, n));
+    }
+}
