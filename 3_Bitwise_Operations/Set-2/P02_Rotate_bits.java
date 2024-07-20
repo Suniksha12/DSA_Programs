@@ -12,6 +12,7 @@ Time Complexity : O(1)
 
 Space Complexity : O(1)*/
 
+/*
 public class P02_Rotate_bits {
    static final int INT_BITS = 32;
 
@@ -33,4 +34,25 @@ public class P02_Rotate_bits {
                              " by " + d + " is ");
     System.out.print(rightRotate(n, d));
 }
+} */
+
+/* For 16 bits
+ * 
+ * Time Complexity : O(1)
+ * Space Comlexity : O(1)
+ */
+
+public class P02_Rotate_bits { 
+    static void rotate(int n , int d) {
+        int t = 16;
+        int left = ((n << d) | n >>(t-d)) & 0xFFFF;
+        int right = ((n >> d) | n << (t-d)) & 0xFFFF;
+        System.out.println(left);
+         System.out.println(right);
+    }
+    public static void main (String[] args) {
+        int n=28;
+          int d=2;
+          rotate(n,d);
+    }
 }
