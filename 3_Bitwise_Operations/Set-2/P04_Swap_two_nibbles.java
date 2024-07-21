@@ -9,7 +9,7 @@ Time Complexity : O(1)
 
 Space Complexity : O(1)*/
 
-
+/*
 public class P04_Swap_two_nibbles {
     static int swapNibbles(int x) {
         return ((x & 0x0F) << 4 | (x & 0xF0) >> 4);
@@ -18,5 +18,27 @@ public class P04_Swap_two_nibbles {
     {
     int x = 100;
     System.out.print(swapNibbles(x));
+    }
+}
+*/
+
+/*Approach 2 - BIT Manipulation 
+ * 
+ * Time Complexity : O(1)
+ * 
+ * Space Complexity : O(1)
+*/
+
+public class P04_Swap_two_nibbles {
+    static int swapNibbles(int x) {
+        int a = x % 16;
+        int b = x / 16;
+        int ans = a * 16 + b;
+        return ans;
+    }
+    public static void main(String arg[])
+    {
+        int x = 100;
+        System.out.print(swapNibbles(x));
     }
 }
