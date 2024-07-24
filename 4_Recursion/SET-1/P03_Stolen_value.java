@@ -11,6 +11,7 @@ Approach - Naive Approach
 Time Complexity:  O(2^N)
 Time Complexity:  O(2^N)*/
 
+/*
 public class P03_Stolen_value {
    static int maxLoot(int hval[], int n) {
       if(n<0) {
@@ -31,3 +32,50 @@ public class P03_Stolen_value {
                         + maxLoot(hval, n-1)); 
    }  
 }
+*/
+
+/*Approach 2- using O(n) extra space 
+ * 
+ * Time Complexity : O(n^2)
+ * 
+ * Space Complexity: O(n)
+*/
+
+import java.util.Arrays;
+
+public class P03_Stolen_value {
+    static void solve(int n, int[] v) {
+        int[] dp = new int[n];
+        Arrays.fill(dp,-2);
+        int maxmoney =0;
+        if(n==1 || n==2) {
+            System.out.print("Maximum loot possible : "); 
+            int max = Integer.MAX_VALUE;
+            for(int i =0;i<v.length;i++) {
+                max = Math.max(v[i],max);
+            }
+            System.out.println(max);
+            return;
+        }
+        dp[0] = v[0];
+        dp[1] = v[1];
+        for(int i =2;i<n;i++) {
+            int money =0;
+            dp[i] = v[i];
+            for(int j =i-2;j>=0;j--) {
+                money = Math.max(money,dp[j]);
+            }
+            dp[i] += money;
+        }
+        int m = Arrays.stream(dp).max().getAsInt();
+        System.out.print("Maximum loot possible : "); 
+        System.out.println(m); 
+        return;
+    }
+    public static void main(String[] args) 
+  { 
+    int n = 7; 
+    int[] v = { 6, 7, 1, 3, 8, 2, 4 }; 
+    solve(n, v); 
+  } 
+} 
