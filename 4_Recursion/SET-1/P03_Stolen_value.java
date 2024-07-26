@@ -41,13 +41,13 @@ public class P03_Stolen_value {
  * Space Complexity: O(n)
 */
 
+/*
 import java.util.Arrays;
 
 public class P03_Stolen_value {
     static void solve(int n, int[] v) {
         int[] dp = new int[n];
         Arrays.fill(dp,-2);
-        int maxmoney =0;
         if(n==1 || n==2) {
             System.out.print("Maximum loot possible : "); 
             int max = Integer.MAX_VALUE;
@@ -78,4 +78,33 @@ public class P03_Stolen_value {
     int[] v = { 6, 7, 1, 3, 8, 2, 4 }; 
     solve(n, v); 
   } 
-} 
+} */
+
+/*Approach - 3: Dynamic Programming(Bottom Up Approach) 
+ * 
+ * Time Complexity : O(N)
+ * 
+ * Space Complexity : O(N)
+*/
+
+public class P03_Stolen_value {
+  static int maxLoot(int hval[], int n) {
+    if(n==0) return 0;
+    if(n==1) return hval[0];
+    if(n==2) return Math.max(hval[0],hval[1]);
+
+    int[] dp = new int[n];
+    dp[0] = hval[0];
+    dp[1] = Math.max(hval[0],hval[1]);
+
+    for(int i =2;i<n;i++) 
+        dp[i] = Math.max(hval[i] + dp[i-2] , dp[i-1]);
+    return dp[n-1];
+  }
+  public static void main(String[] args) 
+    { 
+        int hval[] = { 6, 7, 1, 3, 8, 2, 4 }; 
+        int n = hval.length; 
+        System.out.println("Maximum loot possible : " + maxLoot(hval, n)); 
+    } 
+  }
