@@ -50,6 +50,7 @@ public class P03_Josephs_probelm {
  * Space Complexity : O(N)
  */
 
+/*
  public class P03_Josephs_probelm {
     public static void main(String[] args) {
         int n =14, k=2;
@@ -82,4 +83,28 @@ public class P03_Josephs_probelm {
         }
         return cut + 1;
     }
- }
+ } */
+
+ /*Approach 3 - in Linear time and Space Compelxity
+  * 
+  Time Complexity : O(N)
+  Space Compelxity : O(1)
+
+  */
+
+  public class P03_Josephs_probelm {
+    static int joseph(int N , int K){
+        int i =1,ans=0;
+        while(i<=N) {
+            ans = (ans + K) % i;
+            i++;
+        }
+      return ans + 1;
+    }
+    public static void main (String[] args) {
+
+        int N = 14, k = 2;
+        int ans = joseph(N, k);
+        System.out.println(ans);
+    }
+  }
