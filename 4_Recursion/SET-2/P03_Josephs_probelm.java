@@ -91,7 +91,7 @@ public class P03_Josephs_probelm {
   Space Compelxity : O(1)
 
   */
-
+/*
   public class P03_Josephs_probelm {
     static int joseph(int N , int K){
         int i =1,ans=0;
@@ -108,3 +108,26 @@ public class P03_Josephs_probelm {
         System.out.println(ans);
     }
   }
+*/
+
+/*Approach 4 - Using Recursion
+ * 
+ * Time Complexity : O(N)
+ * Space Complexity : O(N)
+ */
+
+ public class P03_Josephs_probelm {
+      static int Joseph(int n , int k) {
+        if(n == 1)
+           return 1;
+        else 
+           return (Joseph(n-1,k) + k-1) % n+1;
+      }
+      public static void main(String[] args)
+      {
+          int n = 14;
+          int k = 2;
+          System.out.println("The chosen place is "
+                             + Joseph(n, k));
+      } 
+ }
