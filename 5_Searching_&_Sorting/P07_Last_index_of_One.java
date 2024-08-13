@@ -15,6 +15,7 @@ Approach - 1 Traverse the whole string
 Time Complexity : O(N)
 Space Complexity : O(1)*/
 
+/* 
 public class P07_Last_index_of_One {
     static int FindLastIndex(String str, Character ch){
         int index =-1;
@@ -36,5 +37,30 @@ public class P07_Last_index_of_One {
         else {
             System.out.println("Last Index is "+ index);
         }
+    }
+}
+*/
+
+/*Approach - 2 Traverse from right 
+ * 
+ * Time Complexity : O(N)
+ * Space complexity : O(1)
+*/
+
+public class P07_Last_index_of_One {
+    static int FindLastIndex(String str, Character ch){
+        for(int i = str.length()-1;i>=0;i--)
+            if(str.charAt(i)==ch)
+               return i;
+        return -1;
+    }
+    public static void main(String[] args) {
+        String str = "geeksforgeeks";
+    Character x = 'e';
+    int index = FindLastIndex(str, x);
+    if (index == -1)
+        System.out.println("Character not found");
+    else
+        System.out.println("Last index is " + index);
     }
 }
