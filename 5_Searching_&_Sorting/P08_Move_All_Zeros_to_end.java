@@ -11,6 +11,7 @@ Approach - 1 Naive Approach
 Time Complexity : O(N)
 Space Compelxity : o(N)*/
 
+/*
 public class P08_Move_All_Zeros_to_end {
     public static void main(String[] args) {
         int[] A= {5, 6, 0, 4, 6, 0, 9, 0, 8};
@@ -41,3 +42,33 @@ public class P08_Move_All_Zeros_to_end {
         }
     }
 }
+*/
+
+/*Approach -2 Better Approach 
+ * 
+ * Time Complexity :O(N)
+ * Spae Compplexity : O(1)
+ */
+
+ public class P08_Move_All_Zeros_to_end {
+    static void pushZerostoend(int arr[] , int n){
+        int count=0;
+        for(int i =0;i<n;i++){
+            if(arr[i] !=0)
+               arr[count++] = arr[i];
+
+        while(count<n)
+              arr[count++]=0;
+
+        }
+  
+    }
+    public static void main(String[] args) {
+        int arr[] = {1,9,8,4,0,0,2,7,0,6,0,9};
+        int n = arr.length;
+        pushZerostoend(arr, n);
+        System.out.println("Array after pushing zeros to the back : ");
+        for(int i=0;i<n;i++)
+            System.out.print(arr[i]+"");
+    }
+ }
