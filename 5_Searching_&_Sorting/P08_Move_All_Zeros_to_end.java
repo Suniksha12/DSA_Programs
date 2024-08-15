@@ -50,6 +50,7 @@ public class P08_Move_All_Zeros_to_end {
  * Spae Compplexity : O(1)
  */
 
+ /*
  public class P08_Move_All_Zeros_to_end {
     static void pushZerostoend(int arr[] , int n){
         int count=0;
@@ -71,4 +72,32 @@ public class P08_Move_All_Zeros_to_end {
         for(int i=0;i<n;i++)
             System.out.print(arr[i]+"");
     }
- }
+ } */
+
+ /*Approach -3 Optimized solution
+  * 
+  Time Complexity :O(N)
+  Spae complexity : O(1)
+  */
+
+  public class P08_Move_All_Zeros_to_end {
+    static void swap(int[] A, int a,int b){
+        int temp = A[a];
+        A[a] = A[b];
+        A[b] = temp;
+    }
+    public static void main(String[] args) {
+        int[] A={ 5, 6, 0, 4, 6, 0, 9, 0, 8 };
+        int n = A.length;
+        int j=0;
+        for(int i=0;i<n;i++){
+            if(A[i] != 0) {
+                swap(A, j, i);
+                j++;
+            }
+        }
+        for(int i=0;i<n;i++) {
+            System.out.print(A[i] + " ");
+        }
+    }
+}
