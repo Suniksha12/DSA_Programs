@@ -9,6 +9,7 @@
    Space Complexity : O(n * log n)
  */
 
+/*
 public class P02_Sort_String {
     void merge(char arr[] , int l , int m , int r){
         int n1= m-l+1;
@@ -73,5 +74,24 @@ public class P02_Sort_String {
 
         System.out.println("\nSorted array is");
         printArray(arr);
+    }
+}
+*/
+
+/*Approach 2 - Using Sort() method */
+ 
+import java.util.Arrays;
+public class P02_Sort_String {
+    public static String sortString(String inputString){
+        char tempArray[] = inputString.toCharArray();
+        Arrays.sort(tempArray);
+        return new String(tempArray);
+    }
+    public static void main(String[] args) {
+        String inputString = "geeksforgeeks";
+        String outputString = sortString(inputString);
+
+        System.out.println("Input String : " + inputString);
+        System.out.println("Output String : " + outputString);
     }
 }
