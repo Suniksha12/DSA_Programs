@@ -46,6 +46,7 @@ public class P03_Segregate_array{
  * Space Complexity : O(1)
 */
 
+/* 
 public class P03_Segregate_array{
     void segregate0and1(int arr[], int size){
         int left =0,right = size - 1;
@@ -71,5 +72,41 @@ public class P03_Segregate_array{
         System.out.print("Array after segregation is "); 
         for (i = 0; i < 6; i++) 
             System.out.print(arr[i] + " ");
+    }
+}*/
+
+/*Approach 3 - two pointer type 
+ * 
+ * Time Complexity : O(n)
+ * Space Complexity : O(1)
+*/
+
+public class P03_Segregate_array{
+    static void segregate0and1(int arr[]){
+        int type0 = 0;
+        int type1 = arr.length - 1;
+
+        while(type0<type1) {
+            if(arr[type0] == 1){
+                if(arr[type1] != 1) {
+                    arr[type1] = arr[type1] + arr[type0];
+                    arr[type0] = arr[type1] - arr[type0];
+                    arr[type1] = arr[type1] - arr[type0];
+                }
+                type1--;
+            }
+            else{
+                type0++;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        int[] array = { 0, 1, 0, 1, 1, 1 }; 
+  
+        segregate0and1(array); 
+  
+        for (int a : array) { 
+            System.out.print(a + " "); 
+        }  
     }
 }
