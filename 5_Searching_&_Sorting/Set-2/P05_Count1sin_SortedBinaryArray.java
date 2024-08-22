@@ -89,4 +89,20 @@ public static void main(String[] args) {
 }
 } */
 
-/*Approach - 4 u */
+/*Approach - 4 using inbuilt fucntion
+ * 
+ * Time Compelxity : O(N)
+ * Space Complexity : O(1)
+ */
+
+ public class P05_Count1sin_SortedBinaryArray {
+    public static void main(String[] args) {
+        int[] arr = { 1, 1, 1, 1, 0, 0, 0, 0, 0 };
+        int size = arr.length;
+
+        long total = Arrays.stream(arr).filter(i->i==1).count();
+
+        System.out.println("Count of 1's in given array is "
+                           + total);
+    }
+ }
