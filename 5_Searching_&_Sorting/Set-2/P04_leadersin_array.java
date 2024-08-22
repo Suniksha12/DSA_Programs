@@ -35,5 +35,6 @@ public class P04_leadersin_array {
 
 /*Approach -2 Using Suffix Maximum  
  * 
- * Time Complexity : 
+ * Time Complexity : O(N)
+ * Space Complexity : O(1)
 */
