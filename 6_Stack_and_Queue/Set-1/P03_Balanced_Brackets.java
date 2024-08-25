@@ -11,6 +11,7 @@ Approach 1 - Using Stack
 Time Comlexity : O(N)
 Space Complexity : O(N)*/
 
+/*
 public class P03_Balanced_Brackets {
     static boolean balanced(String expr){
         Deque<Character> stack = new ArrayDeque<Character>();
@@ -47,4 +48,36 @@ public class P03_Balanced_Brackets {
         else 
           System.out.println("Not Balanced");
     }
+}*/
+
+/*Approach - 2 Without Using Stack 
+ * 
+ * Time Complexity :O(N)
+ * Space Complexity : O(N)
+*/
+
+public class P03_Balanced_Brackets {
+     static boolean balanced(String s){
+        int i =-1;
+        char[] stack = new char[s.length()];
+        for(char ch:s.toCharArray()) {
+            if(ch=='(' || ch=='{' || ch == '[') stack[++i] = ch;
+            else {
+                if(i>=0 && ((stack[i] == '(' && ch == ')')
+                || (stack[i] == '{' && ch == '}')
+                || (stack[i] == '[' && ch == ']')))
+                   i--;
+                else return false;
+            }
+        }
+        return i==-1;
+     }
+public static void main(String[] args) {
+    
+    String expr = "{()}[]";
+    if(balanced(expr))
+    System.out.println("Balanced");
+    else
+        System.out.println("Not Balanced");
+}
 }
