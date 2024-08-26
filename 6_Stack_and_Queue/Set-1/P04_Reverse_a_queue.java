@@ -15,6 +15,7 @@ Approach -1 Reversing a queue using stack
 Time Complexity : O(N)
 Spaec Complexity : O(N)*/
 
+/*
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -53,5 +54,46 @@ public class P04_Reverse_a_queue {
 
         reversequeue();
         print();
+    }
+}*/
+
+/*Approach - 2 Reversing Queue using recursion
+ * 
+ * Time Complexity : O(N)
+ * Space Complexity : O(N)
+ */
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class P04_Reverse_a_queue {
+        public static void Print(Queue<Integer> Queue){
+              while(Queue.size() >0) {
+                System.out.print(Queue.peek() + " ");
+                Queue.remove();
+              }
+    }
+    public static void reversequeue(Queue<Integer> q) {
+        if(q.size()==0) return;
+        int fr = q.peek();
+        q.remove();
+        reversequeue(q);
+        q.add(fr);
+    }
+    public static void main(String[] args) {
+        Queue<Integer> Queue = new LinkedList<>();
+          Queue.add(10);
+          Queue.add(20);
+          Queue.add(30);
+          Queue.add(40);
+          Queue.add(50);
+          Queue.add(60);
+          Queue.add(70);
+          Queue.add(80);
+          Queue.add(90);
+          Queue.add(100);
+
+           reversequeue(Queue);
+           Print(Queue);
     }
 }
