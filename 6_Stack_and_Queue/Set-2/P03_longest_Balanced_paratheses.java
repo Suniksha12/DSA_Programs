@@ -13,6 +13,7 @@ Output : 6
 Time Complexity :O(len(str))
 Space Complexity : O(1)*/
 
+/*
 public class P03_longest_Balanced_paratheses {
     static int balanced(String str , int n){
         int max_length =0;
@@ -38,4 +39,32 @@ public class P03_longest_Balanced_paratheses {
         int n = str.length();
         System.out.println(balanced(str, n));
     }
-}
+} */
+
+/*Another approach 
+ * Time Complexity : O(N)
+ * Space Complexity : O(1)
+ */
+
+ public class P03_longest_Balanced_paratheses {
+   public static void main(String[] args) {
+    String str = "(()))())";
+    int n = str.length();
+    int blanace =0;
+    int max_length =0;
+    for(int i=0;i<n;i++){
+        if(str.charAt(i) == '('){
+            blanace++;
+        }
+        else {
+            blanace--;
+        }
+        if(blanace<0){
+            break;
+        } else if(blanace ==0){
+            max_length = i+1>max_length ? i+1:max_length;
+        }
+    }
+    System.out.println("Length of longest balanced parathesis :" + max_length);
+   }
+ }
