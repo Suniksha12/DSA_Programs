@@ -41,3 +41,4 @@ public class P01_Insert_element_inLinkedList {
         print(head);
     }
 }
+
