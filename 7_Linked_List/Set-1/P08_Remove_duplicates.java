@@ -77,6 +77,7 @@ public class P08_Remove_duplicates {
  * Space Complexity : O(1)
  */
 
+/* 
 class Node{
     int data;
     Node next;
@@ -120,6 +121,58 @@ public class P08_Remove_duplicates {
         head = removeDuplicates(head);
 
         System.out.println("Linked List after duplicate removal:");
+        printList(head);
+    }
+} */
+
+/*Aprroach - 3 Using Recursion 
+ * 
+ * Time Complexity : O(n)
+ * Space Complexity : O(n)
+ */
+
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+public class P08_Remove_duplicates{
+    static void removeDuplicates(Node head){
+        if(head==null) return;
+
+        if(head.next != null){
+            if(head.data == head.next.data) {
+                head.next = head.next.next;
+                removeDuplicates(head);
+            }else{
+                removeDuplicates(head.next);
+            }
+        }
+    }
+    static void printList(Node node){
+        while(node != null){
+            System.out.print(node.data + " ");
+            node = node.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Node head = new Node(11);
+        head.next = new Node(11);
+        head.next.next = new Node(11);
+        head.next.next.next = new Node(13);
+        head.next.next.next.next = new Node(13);
+        head.next.next.next.next.next = new Node(20);
+
+        System.out.println("Linked list before duplicate removal:");
+        printList(head);
+
+        removeDuplicates(head);
+
+        System.out.println("Linked list after duplicate removal:");
         printList(head);
     }
 }
