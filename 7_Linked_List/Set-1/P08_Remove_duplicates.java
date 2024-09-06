@@ -12,6 +12,7 @@ Approach - 1 Naive Approach - Using HashSet
 Time Complexity : O(N)
 Space Complexity : O(N)*/
 
+/*
 import java.util.HashSet;
 class Node{
     int data;
@@ -66,5 +67,59 @@ public class P08_Remove_duplicates {
         
         System.out.println("Linked list after duplicate removal:");
         printlist(head);
+    }
+}
+*/
+
+/*Approach - 2 By changing next Pointer 
+ * 
+ * Time Complexity: O(N)
+ * Space Complexity : O(1)
+ */
+
+class Node{
+    int data;
+    Node next;
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+public class P08_Remove_duplicates {
+    static Node removeDuplicates(Node head){
+           Node curr = head;
+           while(curr != null && curr.next != null) {
+               if(curr.data == curr.next.data){
+                  Node nextNext = curr.next.next;
+                  curr.next = nextNext;
+               }
+               else{
+                curr = curr.next;
+               }
+           }
+           return head;
+    }
+    static void printList(Node node){
+        while(node != null){
+            System.out.print(node.data + " ");
+            node = node.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Node head = new Node(11);
+        head.next = new Node(11);
+        head.next.next = new Node(11);
+        head.next.next.next = new Node(13);
+        head.next.next.next.next = new Node(13);
+        head.next.next.next.next.next = new Node(20);
+
+        System.out.println("Linked List before duplicate removal:");
+        printList(head);
+
+        head = removeDuplicates(head);
+
+        System.out.println("Linked List after duplicate removal:");
+        printList(head);
     }
 }
