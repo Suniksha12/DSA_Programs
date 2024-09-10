@@ -15,6 +15,7 @@ Approach - Brute Force Way
 Time Complexity: O(n+m)
 Space Complexity : O(n+m)*/
 
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -67,6 +68,61 @@ public class P01_merge_two_ll{
         Node temp = res;
         System.out.print("Merged Link list is :\n");
 
+        while(temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+} */
+
+/* Approach - 2 Using Recursive Merge
+ * 
+ * Time Complexity : O(m+n)
+ * Space Complexity : O(m+n)
+ */
+
+class Node {
+    int data;
+    Node next;
+    Node(int x){
+        this.data=x;
+        this.next = null;
+    }
+}
+public class P01_merge_two_ll{
+    public static Node mergSorted(Node a , Node b){
+           Node result = null;
+
+           if(a==null) 
+              return b;
+           else if(b==null)
+               return a;
+
+           if(a.data <= b.data){
+            result = a;
+            result.next = mergSorted(a.next,b);
+           }
+           else{
+            result = b;
+            result.next = mergSorted(a,b.next);
+           }
+           return result;
+    }
+    public static void main(String[] args) {
+        Node a = new Node(2);
+        a.next = new Node(4);
+        a.next.next = new Node(8);
+        a.next.next.next = new Node(9);
+
+        Node b = new Node(1);
+        b.next = new Node(3);
+        b.next.next = new Node(8);
+        b.next.next.next = new Node(10);
+
+        Node res = mergSorted(a,b);
+
+        Node temp = res;
+        System.out.print("Merge Linked List is:\n");
         while(temp != null) {
             System.out.print(temp.data + " ");
             temp = temp.next;
