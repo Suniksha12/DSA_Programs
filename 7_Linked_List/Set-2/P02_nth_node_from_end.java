@@ -17,7 +17,84 @@ Approach -1 Naive Approach
 Time Complexity : O(m)
 Space Complexity : O(1)*/
 
+/*
+class Node{
+    int data;
+    Node next;
 
+    Node(int new_data) {
+        data = new_data;
+        next = null;
+    }
+}
 public class P02_nth_node_from_end {
-    
+    static int findNth(Node head , int N) {
+        int len =0,i;
+
+        Node temp = head;
+
+        while (temp != null) {
+            temp = temp.next;
+            len++;
+        }
+        if(len<N)
+           return -1;
+
+        temp = head;
+
+        for(i=1;i<len-N+1;i++)
+            temp = temp.next;
+        return temp.data;
+    }
+
+    public static void main(String[] args) {
+        Node head = new Node(35);
+        head.next = new Node(15);
+        head.next.next = new Node(4);
+        head.next.next.next = new Node(20);
+
+        System.out.println(findNth(head, 4));
+    }
+} */
+
+/* Using Two Pointers 
+ * 
+ * Time Complexity : O(m)
+ * Space Complexity : O(1)
+ */
+
+class Node{
+    int data;
+    Node next;
+    Node(int new_data) {
+        data = new_data;
+        next = null;
+    }
+}
+public class P02_nth_node_from_end {
+   static int nthFromEnd(Node head, int N) {
+        Node main_ptr = head;
+        Node ref_ptr = head;
+
+        for(int i=1;i<N;i++){
+            ref_ptr = ref_ptr.next;
+
+            if(ref_ptr == null) {
+                return -1;
+            }
+        }
+        while(ref_ptr.next != null) {
+            ref_ptr = ref_ptr.next;
+            main_ptr = main_ptr.next;
+        }
+        return main_ptr.data;
+   }
+   public static void main(String[] args) {
+      Node head = new Node(35);
+      head.next = new Node(15);
+      head.next.next = new Node(4);
+      head.next.next.next = new Node(20);
+      
+      System.out.println(nthFromEnd(head,4));
+   }
 }
