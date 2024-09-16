@@ -62,4 +62,61 @@ public class P01_BST_sum {
     }
 } */
 
-/* Approach - 2  */
+/* Approach - 2 Using Inorder Traversal and Two pointers
+ * 
+ * Time Complexity : O(n)
+ * Space Complexity : O(n)
+ */
+
+import java.util.List;
+import java.util.ArrayList;
+class Node{
+    int key;
+    Node left,right;
+    Node(int x){
+        key = x;
+        left = right = null;
+    }
+}
+public class P01_BST_sum {
+    static void inOrderTraversal(Node root , List<Integer> arr) {
+        if(root == null) return;
+
+        inOrderTraversal(root.left, arr);
+        arr.add(root.key);
+        inOrderTraversal(root.right, arr);
+    }
+    static boolean findTarget(Node root, int sum) {
+        List<Integer> arr = new ArrayList<>();
+        inOrderTraversal(root, arr);
+
+        int left =0,right = arr.size() - 1;
+
+        while(left < right) {
+            int currentSum = arr.get(left) + arr.get(right);
+            if(currentSum == sum)
+               return true;
+            else if(currentSum < sum)
+                    left++;
+                else
+                    right--;
+        }
+        return false;
+    }
+public static void main(String[] args) {
+    Node root = new Node(7);
+    root.left = new Node(3);
+    root.right = new Node(8);
+    root.left.left = new Node(2);
+    root.left.right = new Node(4);
+    root.right.right = new Node(9);
+
+    int sum = 12;
+
+    if(findTarget(root, sum)){
+        System.out.println("True");
+    } else {
+        System.out.println("False");
+    }
+}
+}
