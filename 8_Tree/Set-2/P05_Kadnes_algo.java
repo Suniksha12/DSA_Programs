@@ -15,6 +15,7 @@ Approach - Naive Approach
 Time Complexity : O(N^2)
 Space Complexity : O(1)*/
 
+/*
 public class P05_Kadnes_algo {
     static int maxSubarraySum(int[] arr) {
         int res = arr[0];
@@ -24,6 +25,29 @@ public class P05_Kadnes_algo {
                 currSum = currSum + arr[j];
                 res = Math.max(res, currSum);
             }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 2, 3, -8, 7, -1, 2, 3 };
+        System.out.println(maxSubarraySum(arr));
+    }
+} */
+
+/*Approach - 2  Kadanes algorithm 
+ * Time Complexity : O(n)
+ * Space Complexity : O(1)
+*/
+
+public class P05_Kadnes_algo {
+    static int maxSubarraySum(int[] arr) {
+        int res = arr[0];
+        int maxEnding = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            maxEnding = Math.max(maxEnding + arr[i], arr[i]);
+            res = Math.max(res, maxEnding);
         }
         return res;
     }
