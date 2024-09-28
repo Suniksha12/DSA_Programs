@@ -6,6 +6,7 @@ It can provide efficient ways to analyze connectivity and the relationship
  
 Adjacency matrix in an undirected graph.*/
 
+/*
 public class P03_Adjacency_matrix {
     private boolean[][] adjacencyMatrix;
     private int numVertices;
@@ -52,5 +53,64 @@ public class P03_Adjacency_matrix {
         System.out.print("after removing edge between vertices 1 and 2:");
         graph.printGraph();
 
+    }
+}*/
+
+/*Adjacency matrix for directed graph In the directed graph, edges have the direction and it can 
+indicating the one-way relationship between the vertices. The adjacency matrix for the directed graph 
+reflects this directional aspect where the presence of the edge from vertex i to vertex j is the 
+represented by the non-zero values in the (i,j) cell.*/
+
+class DirectedGraph {
+    private int[][] adjacencyMatrix;
+    private int numVertices;
+
+    public DirectedGraph(int numVertices) {
+        this.numVertices = numVertices;
+        adjacencyMatrix = new int[numVertices][numVertices];
+    }
+
+    public void addEdge(int source, int destination) {
+        adjacencyMatrix[source][destination] = 1;
+    }
+
+    public void removeEdge(int source, int destination) {
+        adjacencyMatrix[source][destination] = 0;
+    }
+
+    public boolean hasEdege(int source, int destination) {
+        return adjacencyMatrix[source][destination] == 1;
+    }
+
+    public void printGraph() {
+        System.out.println("Graph reprsentation");
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                System.out.print(adjacencyMatrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class P03_Adjacency_matrix {
+    public static void main(String[] args) {
+        DirectedGraph graph = new DirectedGraph(4);
+
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 0);
+        graph.addEdge(2, 3);
+
+        graph.printGraph();
+        System.out.println("Checking if there's an edge from vertex 2 to 0: "
+                + graph.hasEdege(2, 0));
+
+        System.out.println("Checking if there's an edge from vertex 3 to 1: "
+                + graph.hasEdege(3, 1));
+
+        graph.removeEdge(2, 0);
+        System.out.println("After removing edge from vertex 2 to 0:");
+        graph.printGraph();
     }
 }
