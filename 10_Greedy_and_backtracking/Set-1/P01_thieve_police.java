@@ -119,11 +119,11 @@ public class P01_thieve_police {
                 thi++;
             }else{
                 pol++;
-                while (pol<n&&arr[pol] !='P') {
+                while (pol<n&&arr[pol] !='P') 
                     pol++;
                 }
             }
-            return res;
+         return res;
     }
 
     public static void main(String[] args) {
