@@ -10,6 +10,7 @@ Approach - 1 Using Recursion
 Time Complexity : Exponential
 Space Complexity : O(N)*/
 
+/*
 class P01_Longest_increasing_subsequence {
     static int lisEndAtI(int[] arr, int i) {
         if (i == 0)
@@ -33,5 +34,45 @@ class P01_Longest_increasing_subsequence {
     public static void main(String[] args) {
         int[] arr = { 10, 22, 9, 33, 21, 50, 41, 60 };
         System.out.println("Length of lis is " + lis(arr));
+    }
+} */
+
+/*Approach - 2 Memoization
+ * 
+ * Time Complexity : O(N2)
+ * Space Complexity : O(N2)
+ */
+
+class P01_Longest_increasing_subsequence {
+    static int lisEndAtI(int arr[], int i, int dp[]) {
+        if (i == 0)
+            return 1;
+
+        if (dp[i] != -1)
+            return dp[i];
+
+        int mx = 1;
+        for (int prev = 0; prev < i; prev++)
+            if (arr[prev] < arr[i])
+                mx = Math.max(mx, lisEndAtI(arr, prev, dp) + 1);
+        dp[i] = mx;
+        return dp[i];
+    }
+
+    static int lis(int arr[], int n) {
+        int[] dp = new int[n];
+        for (int i = 0; i < n; i++) {
+            dp[i] = -1;
+        }
+        int res = 1;
+        for (int i = 1; i < n; i++)
+            res = Math.max(res, lisEndAtI(arr, i, dp));
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
+        int n = arr.length;
+        System.out.println("Length of lis is " + lis(arr, n));
     }
 }
