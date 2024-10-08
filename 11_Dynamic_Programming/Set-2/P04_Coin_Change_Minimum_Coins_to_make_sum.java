@@ -83,3 +83,36 @@ public class P04_Coin_Change_Minimum_Coins_to_make_sum {
     }
 } */
 
+/*Approach - 3 Dynamic Programming (Tabulation/ Bottom Up)
+ * 
+ * Time Complexity : O(m*sum)
+ * Space Complexity : O(sum)
+*/
+
+public class P04_Coin_Change_Minimum_Coins_to_make_sum {
+    static int minCoins(int coins[], int m, int sum) {
+        int table[] = new int[sum + 1];
+        table[0] = 0;
+        for (int i = 1; i <= sum; i++)
+            table[i] = Integer.MAX_VALUE;
+        for (int i = 1; i <= sum; i++) {
+            for (int j = 0; j < m; j++)
+                if (coins[j] <= i) {
+                    int sub_res = table[i - coins[j]];
+                    if (sub_res != Integer.MAX_VALUE && sub_res + 1 < table[i])
+                        table[i] = sub_res + 1;
+                }
+        }
+        if (table[sum] == Integer.MAX_VALUE)
+            return -1;
+        return table[sum];
+    }
+
+    public static void main(String[] args) {
+        int coins[] = { 9, 6, 5, 1 };
+        int m = coins.length;
+        int sum = 11;
+        System.out.println("Minimum coins required is "
+                + minCoins(coins, m, sum));
+    }
+}
