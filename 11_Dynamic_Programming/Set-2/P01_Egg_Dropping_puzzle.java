@@ -92,6 +92,7 @@ public class P01_Egg_Dropping_puzzle {
  * Space Complexity : O(N*K)
  */
 
+/*
  public class P01_Egg_Dropping_puzzle {
     static int minTrials(int n , int k){
           int dp[][] = new int[k+1][n+1];
@@ -109,5 +110,30 @@ public class P01_Egg_Dropping_puzzle {
         System.out.println("Minimum number of trials "
                 + "in worst case with " + n + " eggs and "
                 + k + " floors is "+ minTrials(2, 36));
+    }
+ } */
+
+/*Approach - 4 Egg Dropping Puzzle using space-optimized DP
+ * 
+ * Time Complexity : O(N*K)
+ * Space Complexity : O(N)
+ */
+
+ public class P01_Egg_Dropping_puzzle {
+    static int minTrials(int n , int k){
+        int dp[] = new int[n+1],m;
+        for(m=0;dp[n]<k;m++){
+            for(int x=n;x>0;x--){
+                dp[x] += 1+dp[x-1];
+            }
+        }
+        return m;
+    }
+    public static void main(String[] args) {
+        int n = 2, k = 36;
+        System.out.println("Minimum number of trials "
+            + "in worst case with "
+            + n + " eggs and " + k + " floors is " +
+            minTrials(2, 36));
     }
  }
