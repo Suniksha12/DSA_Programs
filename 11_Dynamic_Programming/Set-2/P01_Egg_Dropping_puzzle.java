@@ -49,6 +49,7 @@ public class P01_Egg_Dropping_puzzle {
  * Space Complexity : O(N*k^2)
  */
 
+ /* 
  public class P01_Egg_Dropping_puzzle {
     static int max(int a , int b){
         return (a>b)?a:b;
@@ -83,5 +84,30 @@ public class P01_Egg_Dropping_puzzle {
             "Minimum number of trials in worst"
             + " case with " + n + "  eggs and " + k
             + " floors is " + eggDrop(n, k));       
+    }
+ }*/
+
+/*Approach - 3 
+ * Time Complexity : O(N*K)
+ * Space Complexity : O(N*K)
+ */
+
+ public class P01_Egg_Dropping_puzzle {
+    static int minTrials(int n , int k){
+          int dp[][] = new int[k+1][n+1];
+          int m =0;
+          while(dp[m][n]<k){
+            m++;
+            for(int x = 1;x<=n;x++){
+                dp[m][x] = 1+dp[m-1][x-1] + dp[m-1][x];
+            }
+          }
+        return m;  
+    }
+    public static void main(String[] args) {
+        int n = 2, k = 36;
+        System.out.println("Minimum number of trials "
+                + "in worst case with " + n + " eggs and "
+                + k + " floors is "+ minTrials(2, 36));
     }
  }
