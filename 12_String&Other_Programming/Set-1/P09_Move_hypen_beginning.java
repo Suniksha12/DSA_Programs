@@ -15,6 +15,7 @@ Approach -1 Using swap
 Time Complexity : O(n)
 Space Complexity : O(1)*/
 
+/* 
 public class P09_Move_hypen_beginning {
     static void move(char str[]) {
         int i = str.length - 1;
@@ -31,4 +32,26 @@ public class P09_Move_hypen_beginning {
         move(str);
         System.out.println(String.valueOf(str));
     }
-}
+} */
+
+/*Approach - 2 without using swap
+ * 
+ * time Complexity : O(n)
+ * space complexity : O(1)
+ */
+
+ public class P09_Move_hypen_beginning {
+    static void move(char str[]) {
+        int i= str.length-1;
+        for(int j=i;j>=0;j--)
+            if(str[j]!='_')
+               str[i--] = str[j];
+        while(i>=0)
+              str[i--]='_';
+    }
+    public static void main(String[] args) {
+        char str[] = "Hey_there,_it's_GeeksforGeeks".toCharArray();
+        move(str);
+        System.out.println(String.valueOf(str));
+    }
+ }
