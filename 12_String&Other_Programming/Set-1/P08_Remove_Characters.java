@@ -23,6 +23,7 @@ Approach - 1
 Time Complexity : O(m+n)
 Space Complexity : O(m) */
 
+/*
 public class P08_Remove_Characters {
     static final int NO_OF_CHARS = 256;
 
@@ -55,4 +56,38 @@ public class P08_Remove_Characters {
         String mask_str = "mask";
         System.out.println(removeDirtyChars(str, mask_str));
     }
-}
+} */
+
+/*Efficient Solution 
+ * 
+ * Time Complexity : O(|S1|)
+ * Space Complexity : O(1)
+ */
+
+ public class P08_Remove_Characters {
+    static String removeChars(String s1, int n1 , String s2, int n2){
+        String s3=" ";
+        int[] arr = new int[26];
+        for(int i=0;i<26;i++){
+            arr[i]=0;
+        }
+        for(int i=0;i<n2;i++)
+            arr[s2.charAt(i)-'a']=-1;
+        for(int i=0;i<n1;i++){
+            if(arr[s1.charAt(i)-'a']!=-1){
+                s3+=s1.charAt(i);
+            }
+        }
+        s1=s3;
+        return s1;
+    }
+    public static void main(String[] args) {
+        String string1 = "geeksforgeeks";
+        String string2 = "mask";
+ 
+        int n1 = string1.length();
+        int n2 = string2.length();
+        System.out.println(
+            removeChars(string1, n1, string2, n2));
+    }
+ }
