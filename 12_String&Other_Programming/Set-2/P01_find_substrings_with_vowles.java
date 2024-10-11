@@ -12,6 +12,7 @@ Approach - 1 Hashing
 Time Complexity : O(n^2)
 Space Complexity : O(1)*/
 
+/* 
 import java.util.HashSet;
 
 public class P01_find_substrings_with_vowles {
@@ -36,4 +37,39 @@ public class P01_find_substrings_with_vowles {
         String str = "aeoibsddaeiouudb";
         findSubstring(str);
       }
+}*/
+
+/*Approach - 2 Sliding window 
+ * 
+ * Tiem Complexity :O(n)
+ * space Complexity : O(1)
+*/
+
+import java.util.HashSet;
+
+public class P01_find_substrings_with_vowles {
+    static boolean isVowel(char x) {
+        return (x == 'a' || x == 'e' || x == 'i'
+        || x == 'o' || x == 'u');
+    } 
+    static void findSubstring(String str){
+        HashSet<Character> hash = new HashSet<>();
+        int start=0;
+        for(int i=0;i<str.length();i++){
+            if(isVowel(str.charAt(i))==true){
+                hash.add(str.charAt(i));
+
+                if(hash.size()==5)
+                System.out.print(str.substring(start, i + 1) + " ");
+            }
+            else {
+                start = i+1;
+                hash.clear();
+            }
+        }
+    }  
+    public static void main(String[] args) {
+        String str = "aeoibsddaeiouudb";
+        findSubstring(str);
+    }
 }
