@@ -19,6 +19,7 @@ Approach - Naive Approach
 Time Complexity : O(d)
 Space Complexity : O(1)*/
 
+/*
 public class P03_Remainder_Mod_11 {
     static int remainder(String str){
         int len = str.length();
@@ -33,4 +34,31 @@ public class P03_Remainder_Mod_11 {
         String str = "3435346456547566345436457867978";
         System.out.println(remainder(str));
     }
+} */
+
+/*Approach - 2 Using Divisibility Rule of 11
+ * 
+ * Time Complexity : O(d)
+ * Space Complexity : O(1)
+*/
+
+public class P03_Remainder_Mod_11 {
+   public static int remainder(String str){
+    int n = str.length();
+    int sum=0;
+    for(int i=n-1;i>=0;i--){
+        int digit = str.charAt(i) - '0';
+        if((n-i)%2==0){
+            sum = (sum - digit + 11) % 11;
+        }
+        else {
+            sum = (sum + digit) % 11;
+        }
+    }
+    return sum;
+   }    
+   public static void main(String[] args) {
+    String str = "3435346456547566345436457867978";
+        System.out.println(remainder(str));
+   }
 }
