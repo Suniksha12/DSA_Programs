@@ -99,5 +99,76 @@ public class P03_K_largest_element {
  * Time Complexity : O(N^2)
  * Space Compelxity : O(N)
  */
-
  
+ /*
+ public class P03_K_largest_element {
+     static void swap(int[] arr , int a , int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+     }   
+     static int partition(int[] arr , int l , int r){
+        int x = arr[r];
+        int i = l;
+        for(int j=l;j<=r-1;j++){
+            if(arr[j] <= x) {
+                swap(arr,i,j);
+                i++;
+            }
+        }
+        swap(arr, x, i);
+        return i;
+     }
+     static void Klargest(int[] arr, int l , int r , int k , int N) {
+        int pos = partition(arr, l, r);
+        if(pos - l == k-1)
+           return;
+        else if(pos-l<k-1)
+                Klargest(arr,pos+1,r,k-pos+l-1,N);
+            else
+               Klargest(arr,l,pos-1,k,N);
+     }
+     public static void main(String[] args) {
+        int[] arr = { 11, 3, 2, 1, 15, 5, 4, 45, 88, 96, 50, 45 };
+        int N = arr.length;
+        int k = 3;
+        Klargest(arr, 0, N - 1, k, N);
+
+        System.out.print(k + " largest elements are: ");
+        for (int i = N - 1; i >= N - k; i--)
+            System.out.print(arr[i] + " ");
+
+        System.out.println();
+     }
+ } */
+
+/*Approach - 4 K largest elements in an array using Priority Queue(Min-Heap)
+ * 
+ * Time Complexity : O(N * log(K))
+ * Space Complexity : O(K)
+ */
+
+ import java.util.PriorityQueue;
+ public class P03_K_largest_element {
+      static void klargest(int a[] , int n , int k){
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        for(int i=0;i<n;++i) {
+            pq.add(a[i]);
+            if(pq.size() > k){
+                pq.poll();
+            }
+        }
+        while(!pq.isEmpty()){
+            System.out.print(pq.peek() + " ");
+            pq.poll();
+        }
+        System.out.println();
+      }   
+      public static void main(String[] args) {
+        int a[] = { 11, 3, 2, 1, 15, 5, 4, 45, 88, 96, 50, 45 };
+        int n = a.length;
+        int k = 3;
+        System.out.print(k + " largest elements are : ");
+        klargest(a, n, k);
+      }
+ }
