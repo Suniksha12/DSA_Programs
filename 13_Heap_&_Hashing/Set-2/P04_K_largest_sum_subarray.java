@@ -16,6 +16,7 @@ Approach - Brute force
 Time Complexity : O(n2*log(n2))
 Space Complexity: O(n)*/
 
+/* 
 import java.util.ArrayList;
 import java.util.Collections;
 public class P04_K_largest_sum_subarray {
@@ -39,4 +40,46 @@ public class P04_K_largest_sum_subarray {
 
         System.out.println(KthLargestSum(a, N, K));
     }
+}*/
+
+/*Subarray using Min-Heap 
+ * Time Complexity : O(N2 log K) 
+ * Space Complexity : O(N)
+*/
+
+import java.util.PriorityQueue;
+
+public class P04_K_largest_sum_subarray {
+      static int KthLargestSum(int arr[] , int N, int K){
+        int sum[] = new int[N+1];
+        sum[0]=0;
+        sum[1] = arr[0];
+        for(int i=2;i<=N;i++)
+            sum[i] = sum[i-1]+arr[i-1];
+
+        PriorityQueue<Integer> Q = new PriorityQueue<Integer>();
+
+        for(int i=1;i<=N;i++){
+            for(int j=i;j<=N;j++){
+                int x = sum[j]-sum[i-1];
+                if(Q.size()<K)
+                   Q.add(x);
+                else{
+                    if(Q.peek() < x){
+                        Q.poll();
+                        Q.add(x);
+                    }
+                }
+            } 
+        }
+        return Q.poll();
+        }
+        
+      public static void main(String[] args) {
+        int a[] = new int[] { 10, -10, 20, -40 };
+        int N = a.length;
+        int K = 6;
+
+        System.out.println(KthLargestSum(a,N,K));
+      }  
 }
