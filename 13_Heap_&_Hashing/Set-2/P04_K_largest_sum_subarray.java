@@ -47,6 +47,7 @@ public class P04_K_largest_sum_subarray {
  * Space Complexity : O(N)
 */
 
+/*
 import java.util.PriorityQueue;
 
 public class P04_K_largest_sum_subarray {
@@ -82,4 +83,38 @@ public class P04_K_largest_sum_subarray {
 
         System.out.println(KthLargestSum(a,N,K));
       }  
-}
+} */
+
+/*Approach - Kth largest sum contiguous subarray using  Prefix Sum and Sorting approach
+ * 
+ * Time Compelxity : O(n^2 log n) 
+ * Space Complexity : O(n^2)
+ */
+
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+
+public class P04_K_largest_sum_subarray {
+     public static int KthLargestSum(List<Integer> arr, int K){
+        int n = arr.size();
+        List<Integer> prefixSum = new ArrayList<>(n+1);
+        prefixSum.add(0);
+        for(int i=1;i<=n;i++){
+            prefixSum.add(prefixSum.get(i-1)+arr.get(i-1));
+        }
+        List<Integer> subarraySums = new ArrayList<>();
+        for(int i=0;i<=n;i++){
+            for(int j=i+1;j<=n;j++){
+                subarraySums.add(prefixSum.get(j) - prefixSum.get(i));
+            }
+        }
+        Collections.sort(subarraySums, Collections.reverseOrder());
+        return subarraySums.get(K-1);
+     }    
+     public static void main(String[] args) {
+        List<Integer> arr = List.of(10, -10, 20, -40);
+        int k = 6;
+        System.out.println(KthLargestSum(arr, k));
+     }
+ }
